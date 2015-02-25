@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="PhotoApp" >
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-animate.js"></script>
+	<script type="text/javascript" src="angularjs-1.2.0-animate-app.js"></script> -->
+	<script type="text/javascript" src="./app.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<title></title>
+</head>
+<body>
+	<header class="logo">
+		<img src="ng-instagram.png" alt="Instagram Logo">
+	</header>
+	<div ng-controller="PhotoSearchCtrl" class="inputForm">
+
+		<form ng-submit="searchPhotos(searchTag)">
+	    	<input type="text" ng-model="searchTag" name="searchTag" placeholder="Enter a tag to search" required />
+	    	<input type="submit" />
+  		</form>
+
+  		<div class="messages">		
+  			<div ng-if="searching && results && !error" && !error class="notification-success">
+    		Searching Instagram for photos tagged with {{ searchTagDisplay }}
+  			</div>
+  			<div ng-if="!searching && results && !error" class="notification-success">
+    		We found {{ results.length }} results for {{ searchTagDisplay }}
+
+    			<div ng-repeat="result in results">
+				<!--	<iframe ng-src="{{ result.images.thumbnail.url }}" frameborder="0" width="480" 
+					height="390"></iframe>
+
+					<img ng-src="{{ result.images.thumbnail.url }}" alt="Image">
+					<iframe ng-src="{{ trustSrc(embedUrl + result.id) }}" frameborder="0" width="480" height="390"></iframe>
+				
+					<a href="{{ result.images.standard_resolution.url }}" target="_blank">
+
+				-->
+					<a href="{{ result.images.standard_resolution.url }}" target="_blank">
+  						<img ng-src="{{ result.images.thumbnail.url }}" alt="Image">
+					</a>
+    			</div>
+
+  			</div>
+  			<div ng-if="results && error" class="notification-failed">
+    		An error occurred accessing the Instagram Photos.
+  			</div>
+  		</div>
+	</div>	
+</body>
+</html>
