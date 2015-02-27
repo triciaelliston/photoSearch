@@ -5,10 +5,11 @@
 	<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-animate.js"></script>
 	<script type="text/javascript" src="angularjs-1.2.0-animate-app.js"></script> -->
 	<script type="text/javascript" src="./app.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
 	<title></title>
 </head>
-<body>
+<body class="container-fluid">
 	<header class="logo">
 		<img src="ng-instagram.png" alt="Instagram Logo">
 	</header>
@@ -26,22 +27,25 @@
   			<div ng-if="!searching && results && !error" class="notification-success">
     		We found {{ results.length }} results for {{ searchTagDisplay }}
 
-    			<div ng-repeat="result in results">
-				<!--	<iframe ng-src="{{ result.images.thumbnail.url }}" frameborder="0" width="480" 
-					height="390"></iframe>
+			<div class="row">
+    			<div ng-repeat="result in results" class="col-xs-6 col-md-4">
+					<!--	<iframe ng-src="{{ result.images.thumbnail.url }}" frameborder="0" width="480" 
+						height="390"></iframe>
 
-					<img ng-src="{{ result.images.thumbnail.url }}" alt="Image">
-					<iframe ng-src="{{ trustSrc(embedUrl + result.id) }}" frameborder="0" width="480" height="390"></iframe>
-				
-					<a href="{{ result.images.standard_resolution.url }}" target="_blank">
+						<img ng-src="{{ result.images.thumbnail.url }}" alt="Image">
+						<iframe ng-src="{{ trustSrc(embedUrl + result.id) }}" frameborder="0" width="480" height="390"></iframe>
+					
+						<a href="{{ result.images.standard_resolution.url }}" target="_blank">
 
-				-->
-					<a href="{{ result.images.standard_resolution.url }}" target="_blank">
-  						<img ng-src="{{ result.images.thumbnail.url }}" alt="Image">
-					</a>
-    			</div>
+					-->
+						<a ng-href="{{ result.images.standard_resolution.url }}" target="_blank" class="thumbnail">
+	  						<img ng-src="{{ result.images.thumbnail.url }}" alt="Image" class="img-responsive">
+						</a>
+	    			</div>
 
-  			</div>
+	  			</div>
+	  		</div>
+
   			<div ng-if="results && error" class="notification-failed">
     		An error occurred accessing the Instagram Photos.
   			</div>
